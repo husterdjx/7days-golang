@@ -33,7 +33,7 @@ func (c *Context) PostForm(key string) string {
 }
 
 func (c *Context) Query(key string) string {
-	return c.Req.URL.Query().Get(key)
+	return c.Req.URL.Query().Get(key) //"http://localhost:9999/hello?name=geektutu"
 }
 
 func (c *Context) Status(code int) {
@@ -56,7 +56,8 @@ func (c *Context) JSON(code int, obj interface{}) {
 	c.Status(code)
 	encoder := json.NewEncoder(c.Writer)
 	if err := encoder.Encode(obj); err != nil {
-		http.Error(c.Writer, err.Error(), 500)
+		//http.Error(c.Writer, err.Error(), 500)因为之前已经Header().Set()，不会再生效
+		panic(err) //参照gin的实现
 	}
 }
 

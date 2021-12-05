@@ -40,7 +40,7 @@ func main() {
 
 	r.POST("/login", func(c *gee.Context) {
 		c.JSON(http.StatusOK, gee.H{
-			"username": c.PostForm("username"),
+			"username": c.PostForm("username"), //优先从post body中查询，其次从url查询
 			"password": c.PostForm("password"),
 		})
 	})
