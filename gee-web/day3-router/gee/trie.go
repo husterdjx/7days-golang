@@ -18,6 +18,9 @@ func (n *node) String() string {
 
 func (n *node) insert(pattern string, parts []string, height int) {
 	if len(parts) == height {
+		if n.pattern != "" {
+			panic(fmt.Sprintf("route conflict:%s already exist,insert %s error", n.pattern, pattern))
+		}
 		n.pattern = pattern
 		return
 	}

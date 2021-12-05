@@ -47,6 +47,11 @@ func main() {
 		// expect /hello/geektutu
 		c.String(http.StatusOK, "hello %s, you're at %s\n", c.Param("name"), c.Path)
 	})
+	//测试路由冲突（:name模糊匹配先添加，后添加精确匹配）时，直接panic
+	/*r.GET("/hello/18", func(c *gee.Context) {
+		// expect /hello/geektutu
+		c.String(http.StatusOK, "hello %s, you're at %s (18)\n", c.Param("name"), c.Path)
+	})*/
 
 	r.GET("/assets/*filepath", func(c *gee.Context) {
 		c.JSON(http.StatusOK, gee.H{"filepath": c.Param("filepath")})
