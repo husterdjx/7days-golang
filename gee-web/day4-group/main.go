@@ -62,6 +62,10 @@ func main() {
 			// expect /hello/geektutu
 			c.String(http.StatusOK, "hello %s, you're at %s\n", c.Param("name"), c.Path)
 		})
+		/*v2.GET("/hello/18", func(c *gee.Context) {
+			// expect /hello/geektutu
+			c.String(http.StatusOK, "hello %s, you're at %s(18)\n", c.Param("name"), c.Path)
+		})*/
 		v2.POST("/login", func(c *gee.Context) {
 			c.JSON(http.StatusOK, gee.H{
 				"username": c.PostForm("username"),
