@@ -75,7 +75,7 @@ func (engine *Engine) Run(addr string) (err error) {
 func (engine *Engine) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	var middlewares []HandlerFunc
 	for _, group := range engine.groups {
-		if strings.HasPrefix(req.URL.Path, group.prefix) {
+		if strings.HasPrefix(req.URL.Path, group.prefix) { //hasprefix是静态比较，只能在group中实现静态路由前缀
 			middlewares = append(middlewares, group.middlewares...)
 		}
 	}
